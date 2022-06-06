@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>login</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -19,7 +19,7 @@
 <!--        Nav bar started -->
 
 	<nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">Project2</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -44,8 +44,73 @@
   </div>
 </nav>
 	<!--Nav bar End -->
+	
+	
+	
+
+	<!-- form start -->
 
 
+	<div class="container">
+		<div class="row mt-3">
+			<div class="col-md-4 offset-md-4">
+				<div class="card">
+					<div class="card-header text-center c-head text-white">
+						<i class="fa fa-sign-in fa-2x"></i>
+						<h4>Login</h4>
+					</div>
+					
+					
+					<%   
+					
+					String logoutMsg = (String)session.getAttribute("logout-msg");
+					if(logoutMsg!=null)
+					{%>
+						<div class="alert alert-success" role="alert"><%=logoutMsg %></div>
+					<%
+					
+					session.removeAttribute("logout-msg");
+					}
+					%>
+					
+					<!-- Error Msg -->
+					
+					<%   
+					
+					String errorMsg = (String)session.getAttribute("error-msg");
+					if(errorMsg!=null)
+					{%> 
+						<div class="alert alert-danger" role="alert"><%=errorMsg %></div>
+					<%
+					
+					session.removeAttribute("error-msg");
+					}
+					%>
+					
+					<div class="card-body">
+						<form action="loginServlet" method="post">
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email address</label> <input
+									type="email" class="form-control" id="exampleInputEmail1"
+									aria-describedby="emailHelp" name="email">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">Password</label> <input
+									type="password" class="form-control" id="exampleInputPassword1" name="password">
+							</div>
+
+							<button type="submit"
+								class="btn btn-success btn-block badge-pill">Login</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- form end -->
 
 
 

@@ -1,11 +1,20 @@
+<%@page import="com.entitiy.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+	
+	<%
+	User user2 = (User)session.getAttribute("user-ob");
+	if(user2==null){
+		session.setAttribute("login-mg","Please Login First..."); 
+		response.sendRedirect("login.jsp");
+	}
+	%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-
+<title>Home</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -20,7 +29,7 @@
 	<!--        Nav bar started -->
 
 	<nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
-		<a class="navbar-brand" href="#">Navbar</a>
+		<a class="navbar-brand" href="#">Project2</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -48,45 +57,32 @@
 	</nav>
 	<!--Nav bar End -->
 
-	<div class="container">
-		<div class="row">
-			<div class"col-md-4 offset-md-4">
-			<div class="card">
-				<div class="card-header">
-					<i class="fa fa-user-plus fa-2x"></i>
-					<h4>Registration Page</h4>
-				</div>
-				<div class="card-body">
-					<form>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Enter Name</label> <input
-								type="text" class="form-control" id="exampleInputEmail1"
-								aria-describedby="emailHelp" >
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Email address</label> <input
-								type="email" class="form-control" id="exampleInputEmail1"
-								aria-describedby="emailHelp" >
-						</div>
-						<div class="form-group">
-							<label for="exampleInputPassword1">Password</label> <input
-								type="password" class="form-control" id="exampleInputPassword1"
-								>
-						</div>
 
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</form>
+	<div class="container">
+		<div class="row d-flex justify-content-center align-items-center mt-4">
+			<div class="col-md-6">
+				<div class="card">
+				<%
+			User user =	(User)session.getAttribute("user-ob");
+				%>
+				
+				<% if(user!=null)
+					
+				{%>
+				<div class="card-body">
+						<h1>Name  :<%=user.getName() %></h1>
+						<h1>Email : <%=user.getEmail()%></h1>
+						<div class="container text-center">
+							<a class="btn btn-primary btn-lg text-white" href="logoutServlet">Logout</a>
+						</div>
+					</div>
+				
+				<%}%>
+					
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
 
 
 
@@ -103,7 +99,5 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-
-
 </body>
 </html>
